@@ -1,3 +1,5 @@
+let Room = require('../models/room.model');
+
 module.exports = {
     initSocket
 }
@@ -5,14 +7,16 @@ module.exports = {
 let io;
 let users = [];
 let rooms = [];
+let room = new Room('mangozroom');
 
 function initSocket(http) {
     io = require('socket.io')(http);
+
     
     io.on('connection', (socket) => {
         console.log('a user connected');
 
-        setUserIntoRoom(socket, 'mangozRoom');
+        setUserIntoRoom(socket, room.name);
 
         socket.on('disconnect', () => {
             console.log(`user disconnected`);
@@ -34,8 +38,8 @@ function getUsersFromRoom(roomName) {
 function setUserIntoRoom(socket, roomName) {
     if(getNumberOfUsersOfRoom(roomName) < 4) {
         socket.join(roomName, () => {
-            io.to(roomName).emit('new user got into room1');
-            console.log(`room ${roomName} has ${getNumberOfUsersOfRoom(roomName)} players`)
+            io.to(roomName).emit('enteredRoomEvent', 'lalala');
+            console.log(`room ${roomName} has ${getNumberOfUsersOfRoom(roomName)} players`);
         });
     }
     else {

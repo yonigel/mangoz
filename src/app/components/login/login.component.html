@@ -1,0 +1,7 @@
+<form [formGroup]="loginFormGroup" (ngSubmit)="onPlayerLogin()">
+  <div class="form-group">
+    <label for="playerName">Hello player! please enter your name</label>
+    <input type="text" formControlName="playerName" class="form-control" id="playerName" placeholder="Enter name">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

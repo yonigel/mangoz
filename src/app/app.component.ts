@@ -9,6 +9,6 @@ import { SocketService } from './services/socketService/socket.service';
 export class AppComponent {
   title = 'app';
 
-  constructor(private socketService: SocketService) {
+  constructor() {
   }
 }
